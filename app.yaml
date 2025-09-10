@@ -1,0 +1,27 @@
+name: ai-configurable-mvp
+services:
+- name: api
+  source_dir: /
+  github:
+    repo: Emak-star/ai-mvp-backend
+    branch: main
+  run_command: uvicorn main:app --host=0.0.0.0 --port=$PORT
+  environment_slug: python
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  http_port: 8080
+  routes:
+  - path: /
+  envs:
+  - key: PORT
+    value: "8080"
+  - key: SUPABASE_URL
+    value: "your_supabase_project_url_here"
+  - key: SUPABASE_SERVICE_KEY
+    value: "your_supabase_service_role_key_here"
+  - key: OPENAI_API_KEY
+    value: "your_openai_api_key_here"
+  - key: DEBUG
+    value: "False"
+  - key: HOST
+    value: "0.0.0.0"
